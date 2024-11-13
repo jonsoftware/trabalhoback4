@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1 class="mb-4">Editar Falta</h1>
+    
+    <form method="post">
+        {% csrf_token %}
+        <div class="mb-3">
+            {{ form.as_p }}
+        </div>
+
+        <div class="d-flex justify-content-between">
+            <button type="submit" class="btn btn-success">Salvar Alterações</button>
+            <a href="{% url 'lista_faltas' %}" class="btn btn-secondary">Cancelar</a>
+        </div>
+    </form>
+
+    <div class="mt-4">
+        <a href="{% url 'funcionario_detail' pk=funcionario.id_funcionario %}" class="btn btn-sm" style="background-color: #a2c2e8; border-color: #a2c2e8; color: white;">Voltar para o perfil de {{ funcionario.nome }}</a>
+    </div>
+</div>
+{% endblock %}
+
+{% block styles %}
+<style>
+    .container {
+        max-width: 600px;
+        background-color: #fff;
+        border-radius: 10px;
+        padding: 30px;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+        font-size: 1.5rem;
+        font-weight: bold;
+    }
+
+    .btn {
+        font-size: 0.875rem;
+        padding: 0.375rem 0.75rem;
+        text-transform: uppercase;
+        border-radius: 5px;
+    }
+
+    .btn-success {
+        background-color: #28a745;
+        border-color: #28a745;
+        color: white;
+    }
+
+    .btn-success:hover {
+        background-color: #218838;
+        border-color: #1e7e34;
+    }
+
+    .btn-secondary {
+        background-color: #6c757d;
+        border-color: #6c757d;
+        color: white;
+    }
+
+    .btn-secondary:hover {
+        background-color: #5a6268;
+        border-color: #545b62;
+    }
+
+    .mt-4 {
+        margin-top: 20px;
+    }
+</style>
+{% endblock %}

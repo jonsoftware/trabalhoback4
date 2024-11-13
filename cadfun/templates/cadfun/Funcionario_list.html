@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+
+{% block title %}Gestão de Funcionários{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h1>Funcionários</h1>
+    <a href="{% url 'funcionario_create' %}" class="btn btn-primary btn-sm">Adicionar Novo</a>
+</div>
+
+<!-- Table -->
+<div class="table-responsive">
+    <table class="table table-bordered table-sm">
+        <thead class="bg-primary text-white">
+            <tr>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>Email</th>
+                <th>Telefone</th>
+                <th>Cargo</th>
+                <th>Data de Admissão</th>
+                <th>Salário</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for funcionario in funcionario_list %}
+            <tr>
+                <td>{{ funcionario.id_funcionario }}</td>
+                <td>{{ funcionario.nome }}</td>
+                <td>{{ funcionario.email }}</td>
+                <td>{{ funcionario.telefone }}</td>
+                <td>{{ funcionario.cargo }}</td>
+                <td>{{ funcionario.data_de_admissao }}</td>
+                <td>{{ funcionario.salario }}</td>
+                <td class="text-center">
+                    <a href="{% url 'funcionario_detail' pk=funcionario.id_funcionario %}" class="btn btn-sm" style="background-color: #a2c2e8; border-color: #a2c2e8; color: white;">Visualizar</a>
+                    <a href="{% url 'funcionario_delete' pk=funcionario.id_funcionario %}" class="btn btn-danger btn-sm">Remover</a>
+                    <a href="{% url 'funcionario_update' pk=funcionario.id_funcionario %}" class="btn btn-secondary btn-sm">Editar</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
+
+{% block styles %}
+<style>
+    /* Estilo para a tabela */
+    .table {
+        border-collapse: collapse;
+        width: 100%;
+        margin-bottom: 1rem;
+    }
+    .table th, .table td {
+        padding: 0.75rem;
+        text-align: left;
+        vertical-align: middle;
+    }
+
+    .table th {
+        font-size: 1rem;
+        font-weight: 600;
+    }
+
+    .table td {
+        font-size: 0.875rem;
+    }
+
+</style>
+{% endblock %}

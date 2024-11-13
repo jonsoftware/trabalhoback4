@@ -1,0 +1,104 @@
+{% extends 'base.html' %}
+
+{% block title %}Lista de Faltas{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h1>Historico de Faltas</h1>
+    <a href="{% url 'criar_falta' %}" class="btn btn-primary btn-sm">Adicionar Falta</a>
+</div>
+
+<div class="table-responsive">
+    <table class="table table-bordered table-sm">
+        <thead class="bg-primary text-white">
+            <tr>
+                <th>Funcionário</th>
+                <th>Data da Falta</th>
+                <th>Motivo</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for falta in faltas %}
+            <tr>
+                <td>{{ falta.id_funcionario.nome }}</td>
+                <td>{{ falta.data_falta }}</td>
+                <td>{{ falta.motivo }}</td>
+                <td class="text-center">
+                    <a href="{% url 'editar_falta' falta.pk %}" class="btn btn-secondary btn-sm">Editar</a>
+                    <a href="{% url 'excluir_falta' falta.pk %}" class="btn btn-danger btn-sm">Excluir</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
+
+{% block styles %}
+<style>
+    /* Estilo para a tabela */
+    .table {
+        border-collapse: collapse;
+        width: 100%;
+        margin-bottom: 1rem;
+    }
+    .table th, .table td {
+        padding: 0.75rem;
+        text-align: left;
+        vertical-align: middle;
+    }
+
+    .table th {
+        font-size: 1rem;
+        font-weight: 600;
+    }
+
+    .table td {
+        font-size: 0.875rem;
+    }
+
+    /* Botões */
+    .btn {
+        font-size: 0.875rem;
+        padding: 0.375rem 0.75rem;
+        text-transform: uppercase;
+        border-radius: 5px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .btn-info {
+        background-color: #17a2b8;
+        border-color: #17a2b8;
+        color: white;
+    }
+
+    .btn-info:hover {
+        background-color: #138496;
+        border-color: #117a8b;
+    }
+
+    .btn-danger {
+        background-color: #dc3545;
+        border-color: #dc3545;
+        color: white;
+    }
+
+    .btn-danger:hover {
+        background-color: #c82333;
+        border-color: #bd2130;
+    }
+
+    .btn-secondary {
+        background-color: #6c757d;
+        border-color: #6c757d;
+        color: white;
+    }
+
+    .btn-secondary:hover {
+        background-color: #5a6268;
+        border-color: #4e555b;
+    }
+
+</style>
+{% endblock %}

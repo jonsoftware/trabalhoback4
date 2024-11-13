@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row mb-4">
+        <div class="col">
+            <h1 class="display-4 text-primary font-weight-bold">
+                {% if form.instance.pk %}
+                    Atualizar Funcionário
+                {% else %}
+                    Cadastrar Novo Funcionário
+                {% endif %}
+            </h1>
+        </div>
+    </div>
+    
+    <div class="card shadow-lg border-0 rounded-lg">
+        <div class="card-body p-5">
+            <form method="post">
+                {% csrf_token %}
+                
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label for="nome" class="form-label">Nome Completo</label>
+                        {{ form.nome }}
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="email" class="form-label">Email</label>
+                        {{ form.email }}
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="telefone" class="form-label">Telefone</label>
+                        {{ form.telefone }}
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="cargo" class="form-label">Cargo</label>
+                        {{ form.cargo }}
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="data_admissao" class="form-label">Data de Admissão</label>
+                        {{ form.data_de_admissao }}
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="salario" class="form-label">Salário</label>
+                        {{ form.salario }}
+                    </div>
+                </div>
+
+                <div class="d-flex justify-content-between mt-4">
+                    <button type="submit" class="btn btn-success btn-lg w-100 w-md-auto">
+                        <i class="fas fa-check-circle"></i> 
+                        {% if form.instance.pk %}
+                            Atualizar Funcionário
+                        {% else %}
+                            Salvar Funcionário
+                        {% endif %}
+                    </button>
+                    <a href="{% url 'funcionario_list' %}" class="btn btn-outline-secondary btn-lg w-100 w-md-auto">
+                        <i class="fas fa-arrow-left"></i> Voltar à Lista
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
